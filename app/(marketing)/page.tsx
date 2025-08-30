@@ -1,16 +1,6 @@
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-} from "@clerk/nextjs";
-import { Loader } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
 
 export default function MarketingPage() {
   return (
@@ -25,31 +15,30 @@ export default function MarketingPage() {
         </h1>
 
         <div className="flex w-full max-w-[330px] flex-col items-center gap-y-3">
-          <ClerkLoading>
-            <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
-          </ClerkLoading>
+          {/* Botão para acessar diretamente a aplicação */}
+          <Button size="lg" variant="secondary" className="w-full" asChild>
+            <Link href="/learn">🚀 TESTAR APLICAÇÃO</Link>
+          </Button>
 
-          <ClerkLoaded>
-            <SignedOut>
-              <SignUpButton mode="modal">
-                <Button size="lg" variant="secondary" className="w-full">
-                  Get Started
-                </Button>
-              </SignUpButton>
+          {/* Botão para ver cursos */}
+          <Button size="lg" variant="primaryOutline" className="w-full" asChild>
+            <Link href="/courses">📚 VER CURSOS</Link>
+          </Button>
 
-              <SignInButton mode="modal">
-                <Button size="lg" variant="primaryOutline" className="w-full">
-                  I already have an account
-                </Button>
-              </SignInButton>
-            </SignedOut>
+          {/* Botão para ver quests */}
+          <Button size="lg" variant="outline" className="w-full" asChild>
+            <Link href="/quests">🎯 VER QUESTS</Link>
+          </Button>
 
-            <SignedIn>
-              <Button size="lg" variant="secondary" className="w-full" asChild>
-                <Link href="/learn">Continue Learning</Link>
-              </Button>
-            </SignedIn>
-          </ClerkLoaded>
+          {/* Botão para ver shop */}
+          <Button size="lg" variant="outline" className="w-full" asChild>
+            <Link href="/shop">🛒 VER SHOP</Link>
+          </Button>
+
+          {/* Botão para ver leaderboard */}
+          <Button size="lg" variant="outline" className="w-full" asChild>
+            <Link href="/leaderboard">🏆 VER LEADERBOARD</Link>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { redirect } from "next/navigation";
 
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { Promo } from "@/components/promo";
@@ -7,31 +6,29 @@ import { StickyWrapper } from "@/components/sticky-wrapper";
 import { Progress } from "@/components/ui/progress";
 import { UserProgress } from "@/components/user-progress";
 import { QUESTS } from "@/constants";
-import { getUserProgress, getUserSubscription } from "@/db/queries";
 
-const QuestsPage = async () => {
-  const userProgressData = getUserProgress();
-  const userSubscriptionData = getUserSubscription();
+// Dados mockados para visualização do front-end
+const mockUserProgress = {
+  activeCourse: {
+    id: 1,
+    title: "Spanish",
+    imageSrc: "/es.svg",
+  },
+  hearts: 5,
+  points: 100,
+};
 
-  const [userProgress, userSubscription] = await Promise.all([
-    userProgressData,
-    userSubscriptionData,
-  ]);
-
-  if (!userProgress || !userProgress.activeCourse) redirect("/courses");
-
-  const isPro = !!userSubscription?.isActive;
-
+const QuestsPage = () => {
   return (
     <div className="flex flex-row-reverse gap-[48px] px-6">
       <StickyWrapper>
         <UserProgress
-          activeCourse={userProgress.activeCourse}
-          hearts={userProgress.hearts}
-          points={userProgress.points}
-          hasActiveSubscription={isPro}
+          activeCourse={mockUserProgress.activeCourse}
+          hearts={mockUserProgress.hearts}
+          points={mockUserProgress.points}
+          hasActiveSubscription={false}
         />
-        {!isPro && <Promo />}
+        <Promo />
       </StickyWrapper>
 
       <FeedWrapper>
@@ -47,7 +44,7 @@ const QuestsPage = async () => {
 
           <ul className="w-full">
             {QUESTS.map((quest) => {
-              const progress = (userProgress.points / quest.value) * 100;
+              const progress = (mockUserProgress.points / quest.value) * 100;
 
               return (
                 <div

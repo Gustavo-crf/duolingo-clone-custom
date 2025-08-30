@@ -1,7 +1,8 @@
-import { SignUp } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const SignUpPage = () => {
-  return <SignUp />;
+  // Redirecionar para a aplicação principal em vez de mostrar registro
+  redirect("/learn");
 };
 
 export default SignUpPage;

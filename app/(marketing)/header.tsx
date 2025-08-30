@@ -1,16 +1,6 @@
 "use client";
 import { useState } from "react";
 
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useAuth,
-} from "@clerk/nextjs";
-import { Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,7 +10,6 @@ import { links } from "@/config";
 import { cn } from "@/lib/utils";
 
 export const Header = () => {
-  const { isSignedIn } = useAuth();
   const [hideBanner, setHideBanner] = useState(true);
 
   return (
@@ -43,36 +32,25 @@ export const Header = () => {
           </Link>
 
           <div className="flex gap-x-3">
-            <ClerkLoading>
-              <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
-            </ClerkLoading>
-            <ClerkLoaded>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
+            {/* Botão para acessar a aplicação diretamente */}
+            <Button size="lg" variant="ghost" asChild>
+              <Link href="/learn">🚀 Testar App</Link>
+            </Button>
 
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <Button size="lg" variant="ghost">
-                    Login
-                  </Button>
-                </SignInButton>
-              </SignedOut>
-
-              <Link
-                href={links.sourceCode}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={isSignedIn ? "pt-1.5" : "pt-3"}
-              >
-                <Image
-                  src="/github.svg"
-                  alt="Source Code"
-                  height={20}
-                  width={20}
-                />
-              </Link>
-            </ClerkLoaded>
+            {/* Link para GitHub */}
+            <Link
+              href={links.sourceCode}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="pt-3"
+            >
+              <Image
+                src="/github.svg"
+                alt="Source Code"
+                height={20}
+                width={20}
+              />
+            </Link>
           </div>
         </div>
       </header>

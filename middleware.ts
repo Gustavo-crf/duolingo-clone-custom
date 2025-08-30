@@ -1,15 +1,8 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-
-const isPublicRoute = createRouteMatcher([
-  "/",
-  "/sign-in(.*)",
-  "/sign-up(.*)",
-  "/api/webhooks/stripe",
-]);
-
-export default clerkMiddleware(async (auth, request) => {
-  if (!isPublicRoute(request)) await auth.protect();
-});
+// Middleware simplificado para desenvolvimento sem autenticação
+export default function middleware() {
+  // Permitir acesso a todas as rotas sem verificação
+  console.log("🔓 Middleware: Acesso livre habilitado");
+}
 
 export const config = {
   matcher: [

@@ -1,5 +1,3 @@
-import { ClerkLoading, ClerkLoaded, UserButton } from "@clerk/nextjs";
-import { Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -38,21 +36,20 @@ export const Sidebar = ({ className }: SidebarProps) => {
         />
         <SidebarItem label="Quests" href="/quests" iconSrc="/quests.svg" />
         <SidebarItem label="Shop" href="/shop" iconSrc="/shop.svg" />
+        <SidebarItem label="Courses" href="/courses" iconSrc="/learn.svg" />
       </div>
 
       <div className="p-4">
-        <ClerkLoading>
-          <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
-        </ClerkLoading>
-
-        <ClerkLoaded>
-          <UserButton
-            afterSignOutUrl="/"
-            appearance={{
-              elements: { userButtonPopoverCard: { pointerEvents: "initial" } },
-            }}
-          />
-        </ClerkLoaded>
+        {/* Botão de usuário mockado para visualização */}
+        <div className="flex items-center gap-x-2 rounded-lg bg-gray-100 p-3">
+          <div className="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center">
+            <span className="text-white font-bold text-sm">U</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-medium text-gray-900">User Demo</span>
+            <span className="text-xs text-gray-500">Demo Account</span>
+          </div>
+        </div>
       </div>
     </div>
   );

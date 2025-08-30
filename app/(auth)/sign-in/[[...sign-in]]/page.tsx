@@ -1,7 +1,8 @@
-import { SignIn } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const SignInPage = () => {
-  return <SignIn />;
+  // Redirecionar para a aplicação principal em vez de mostrar login
+  redirect("/learn");
 };
 
 export default SignInPage;

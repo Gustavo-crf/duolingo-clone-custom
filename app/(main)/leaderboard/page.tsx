@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { redirect } from "next/navigation";
 
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { Promo } from "@/components/promo";
@@ -8,38 +7,93 @@ import { StickyWrapper } from "@/components/sticky-wrapper";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { UserProgress } from "@/components/user-progress";
-import {
-  getTopTenUsers,
-  getUserProgress,
-  getUserSubscription,
-} from "@/db/queries";
 
-const LeaderboardPage = async () => {
-  const userProgressData = getUserProgress();
-  const userSubscriptionData = getUserSubscription();
-  const leaderboardData = getTopTenUsers();
+// Dados mockados para visualização do front-end
+const mockUserProgress = {
+  activeCourse: {
+    id: 1,
+    title: "Spanish",
+    imageSrc: "/es.svg",
+  },
+  hearts: 5,
+  points: 100,
+};
 
-  const [userProgress, userSubscription, leaderboard] = await Promise.all([
-    userProgressData,
-    userSubscriptionData,
-    leaderboardData,
-  ]);
+const mockLeaderboard = [
+  {
+    userId: "1",
+    userName: "Alice Johnson",
+    userImageSrc: "/girl.svg",
+    points: 1250,
+  },
+  {
+    userId: "2",
+    userName: "Bob Smith",
+    userImageSrc: "/boy.svg",
+    points: 1100,
+  },
+  {
+    userId: "3",
+    userName: "Carol Davis",
+    userImageSrc: "/woman.svg",
+    points: 950,
+  },
+  {
+    userId: "4",
+    userName: "David Wilson",
+    userImageSrc: "/man.svg",
+    points: 800,
+  },
+  {
+    userId: "5",
+    userName: "Eva Brown",
+    userImageSrc: "/girl.svg",
+    points: 750,
+  },
+  {
+    userId: "6",
+    userName: "Frank Miller",
+    userImageSrc: "/boy.svg",
+    points: 650,
+  },
+  {
+    userId: "7",
+    userName: "Grace Lee",
+    userImageSrc: "/woman.svg",
+    points: 550,
+  },
+  {
+    userId: "8",
+    userName: "Henry Taylor",
+    userImageSrc: "/man.svg",
+    points: 450,
+  },
+  {
+    userId: "9",
+    userName: "Ivy Chen",
+    userImageSrc: "/girl.svg",
+    points: 350,
+  },
+  {
+    userId: "10",
+    userName: "Jack Anderson",
+    userImageSrc: "/boy.svg",
+    points: 250,
+  },
+];
 
-  if (!userProgress || !userProgress.activeCourse) redirect("/courses");
-
-  const isPro = !!userSubscription?.isActive;
-
+const LeaderboardPage = () => {
   return (
     <div className="flex flex-row-reverse gap-[48px] px-6">
       <StickyWrapper>
         <UserProgress
-          activeCourse={userProgress.activeCourse}
-          hearts={userProgress.hearts}
-          points={userProgress.points}
-          hasActiveSubscription={isPro}
+          activeCourse={mockUserProgress.activeCourse}
+          hearts={mockUserProgress.hearts}
+          points={mockUserProgress.points}
+          hasActiveSubscription={false}
         />
-        {!isPro && <Promo />}
-        <Quests points={userProgress.points} />
+        <Promo />
+        <Quests points={mockUserProgress.points} />
       </StickyWrapper>
 
       <FeedWrapper>
@@ -59,7 +113,7 @@ const LeaderboardPage = async () => {
           </p>
 
           <Separator className="mb-4 h-0.5 rounded-full" />
-          {leaderboard.map((userProgress, i) => (
+          {mockLeaderboard.map((userProgress, i) => (
             <div
               key={userProgress.userId}
               className="flex w-full items-center rounded-xl p-2 px-4 hover:bg-gray-200/50"
