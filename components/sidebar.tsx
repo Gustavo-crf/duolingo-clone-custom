@@ -15,45 +15,43 @@ export const Sidebar = ({ className }: SidebarProps) => {
 
   const routes = [
     {
-      label: "TRILHA DE APRENDIZADO",
+      label: "AULAS",
       iconSrc: "/learn.svg",
-      href: "/learn",
+      href: "/aulas",
     },
     {
-      label: "LEADERBOARD",
+      label: "MEUS ALUNOS",
       iconSrc: "/leaderboard.svg",
-      href: "/leaderboard",
+      href: "/meus-alunos",
     },
     {
-      label: "QUESTS",
+      label: "MATERIAIS",
       iconSrc: "/quests.svg",
-      href: "/quests",
+      href: "/materiais",
     },
     {
-      label: "SHOP",
+      label: "PLANOS",
       iconSrc: "/shop.svg",
-      href: "/shop",
+      href: "/planos",
     },
     {
-      label: "COURSES",
-      iconSrc: "/learn.svg",
-      href: "/courses",
+      label: "MEU PERFIL",
+      iconSrc: "/mascot.svg",
+      href: "/meu-perfil",
     },
   ];
 
   return (
-    <div className={cn("left-0 top-0 flex h-full flex-col border-r-2 px-4 lg:fixed lg:w-[256px]", className)}>
-      <Link href="/learn">
+    <div className={cn("left-0 top-0 flex h-full flex-col border-r-4 px-4 lg:fixed lg:w-[256px]", className)}>
+      <Link href="/aulas">
         <div className="flex items-center gap-x-3 pb-7 pl-4 pt-8">
-          <Image src="/mascot.svg" alt="Mascot" height={40} width={40} />
-
-          <h1 className="text-2xl font-extrabold tracking-wide text-blue-600">
-            Professor IA
+          <h1 className="text-3xl font-black tracking-wide text-blue-600">
+            Eduvia
           </h1>
         </div>
       </Link>
 
-      <div className="flex flex-1 flex-col gap-y-2">
+      <div className="flex flex-1 flex-col gap-y-4">
         {routes.map((route) => (
           <SidebarItem
             key={route.href}

@@ -15,11 +15,21 @@ type SidebarItemProps = {
 export const SidebarItem = ({ label, iconSrc, href }: SidebarItemProps) => {
   const pathname = usePathname();
   const isActive = pathname === href;
+  const isAulas = label === "AULAS";
+  
+  // Para o botão AULAS, considerar ativo também quando estiver em /learn
+  const isAulasActive = isAulas && (isActive || pathname === "/learn" || pathname.startsWith("/learn"));
 
   return (
     <Button
-      variant={isActive ? "sidebarOutline" : "sidebar"}
-      className="h-[52px] justify-start"
+      variant={
+        isAulasActive
+          ? "sidebarGreen" 
+          : isActive 
+            ? "sidebarOutline" 
+            : "sidebar"
+      }
+      className="h-[52px] justify-start text-gray-800"
       asChild
     >
       <Link href={href}>
