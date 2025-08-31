@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const siteConfig: Metadata = {
-  title: "Lingo",
+  title: "Professor IA",
   description:
     "Interactive platform for language learning with lessons, quizzes, and progress tracking.",
   keywords: [
@@ -16,7 +16,7 @@ export const siteConfig: Metadata = {
     "radix-ui",
     "cn",
     "clsx",
-    "lingo",
+    "professor-ia",
     "postgresql",
     "sonner",
     "drizzle",
@@ -46,6 +46,5 @@ export const siteConfig: Metadata = {
 } as const;
 
 export const links = {
-  sourceCode: "https://github.com/sanidhyy/duolingo-clone",
   email: "sanidhya.verma12345@gmail.com",
 } as const;
